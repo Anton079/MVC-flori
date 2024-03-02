@@ -51,5 +51,19 @@ namespace MVC_flori
                 Console.WriteLine(x.BuchetFlori());
             }
         }
+
+        //CRUD
+        public bool EditFlowerPrice(string flori, int newPrice)
+        {
+            foreach (Flori x in FloriList)
+            {
+                if (x.flori == flori)
+                {
+                    x.pret = newPrice; 
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
