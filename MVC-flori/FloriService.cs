@@ -44,6 +44,8 @@ namespace MVC_flori
             this.FloriList.Add(buchet5);
         }
 
+
+        //CRUD
         public void AfisareFlori()
         {
             foreach (Flori x in FloriList)
@@ -52,18 +54,39 @@ namespace MVC_flori
             }
         }
 
-        //CRUD
-        public bool EditFlowerPrice(string flori, int newPrice)
+        public int FindFloriByType(string tipFlori)
         {
-            foreach (Flori x in FloriList)
+            for (int i = 0; i < FloriList.Count; i++)
             {
-                if (x.flori == flori)
+                if (FloriList[i].flori == tipFlori)
                 {
-                    x.pret = newPrice; 
-                    return true;
+                    return i;
                 }
+            }
+            return -1;
+        }
+
+        public bool AddFloriInList(Flori BuchetNou)
+        {
+            if (FindFloriByType(BuchetNou.flori) == -1)
+            {
+                this.FloriList.Add(BuchetNou);
+                return true;
             }
             return false;
         }
+
+        public bool RemoveFloriByType(string BuchetCautat)
+        {
+            int BuchetulCautatIndex = FindFloriByType(BuchetCautat);
+            if (BuchetulCautatIndex != -1)
+            {
+                FloriList.RemoveAt(BuchetulCautatIndex);
+                return true;
+            }
+            return false;
+        }
+
+        //View
     }
 }
