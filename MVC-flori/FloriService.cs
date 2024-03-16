@@ -88,5 +88,82 @@ namespace MVC_flori
         }
 
         //View
+
+        public int FindBucheteByPrice(int buchetePret)
+        {
+            for(int i = 0; i < FloriList.Count; i++)
+            {
+                if (FloriList[i].pret == buchetePret)
+                {
+                    Console.WriteLine(i);
+                    return 1;
+                }
+            }
+            return -1;
+        }
+
+        public bool BuyFlowerSSh(string BuchetDorit)
+        {
+            for(int i = 0;i < FloriList.Count; i++)
+            {
+                if (FloriList[i].flori == BuchetDorit) 
+                {
+                    FloriList.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool AddFlowersInList(Flori FLoriNoi)
+        {
+            if(FindFloriByType(FLoriNoi.flori) != -1)
+            {
+                this.FloriList.Add(FLoriNoi);
+                return true;
+            }
+            return false;
+        }
+
+        //EDIT
+
+        public bool EditBuchetFire(string floriAlese, int fire)
+        {
+            foreach (Flori x in FloriList)
+            {
+                if (x.flori.Equals(floriAlese))
+                {
+                    x.fire = fire;
+                    return true;
+                }
+            }
+            return false;
+        }   
+
+        public bool EditBuchetTipFlori(string floriAlese, string tipFLoriNou)
+        {
+            foreach (Flori x in FloriList)
+            {
+                if (x.flori.Equals(floriAlese))
+                {
+                    x.flori = tipFLoriNou;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool EditBuchetNewPrice(string floriAlese, int newPrice)
+        {
+            foreach (Flori x in FloriList)
+            {
+                if (x.flori.Equals(floriAlese))
+                {
+                    x.pret = newPrice;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
