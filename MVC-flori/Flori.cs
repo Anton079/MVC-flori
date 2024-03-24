@@ -8,9 +8,27 @@ namespace MVC_flori
 {
     public class Flori
     {
-        public int fire;
-        public int pret;
-        public string flori;
+        private int _fire;
+        private int _pret;
+        private string _flori;
+
+        public int fire
+        {
+            get { return _fire; }
+            set { _fire = value; }
+        }
+
+        public int pret
+        {
+            get { return _pret; }
+            set { _pret = value; }
+        }
+
+        public string flori
+        {
+            get { return _flori; }
+            set { _flori = value; }
+        }
 
         public string BuchetFlori()
         {

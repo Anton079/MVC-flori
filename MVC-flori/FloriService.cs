@@ -8,7 +8,13 @@ namespace MVC_flori
 {
     public class FloriService
     {
-        public List<Flori> FloriList = new List<Flori>();
+        private List<Flori> _FloriList;
+
+        public FloriService()
+        {
+            _FloriList = new List<Flori>();
+            this.LoadData();
+        }
 
         public void LoadData()
         {
@@ -37,18 +43,18 @@ namespace MVC_flori
             buchet5.fire = 65;
             buchet5.flori = "Trandafiri";
 
-            this.FloriList.Add(buchet1);
-            this.FloriList.Add(buchet2);
-            this.FloriList.Add(buchet3);
-            this.FloriList.Add(buchet4);
-            this.FloriList.Add(buchet5);
+            this._FloriList.Add(buchet1);
+            this._FloriList.Add(buchet2);
+            this._FloriList.Add(buchet3);
+            this._FloriList.Add(buchet4);
+            this._FloriList.Add(buchet5);
         }
 
 
         //CRUD
         public void AfisareFlori()
         {
-            foreach (Flori x in FloriList)
+            foreach (Flori x in _FloriList)
             {
                 Console.WriteLine(x.BuchetFlori());
             }
@@ -56,9 +62,9 @@ namespace MVC_flori
 
         public int FindFloriByType(string tipFlori)
         {
-            for (int i = 0; i < FloriList.Count; i++)
+            for (int i = 0; i < _FloriList.Count; i++)
             {
-                if (FloriList[i].flori == tipFlori)
+                if (_FloriList[i].flori == tipFlori)
                 {
                     return i;
                 }
@@ -70,7 +76,7 @@ namespace MVC_flori
         {
             if (FindFloriByType(BuchetNou.flori) == -1)
             {
-                this.FloriList.Add(BuchetNou);
+                this._FloriList.Add(BuchetNou);
                 return true;
             }
             return false;
@@ -81,7 +87,7 @@ namespace MVC_flori
             int BuchetulCautatIndex = FindFloriByType(BuchetCautat);
             if (BuchetulCautatIndex != -1)
             {
-                FloriList.RemoveAt(BuchetulCautatIndex);
+                _FloriList.RemoveAt(BuchetulCautatIndex);
                 return true;
             }
             return false;
@@ -91,9 +97,9 @@ namespace MVC_flori
 
         public int FindBucheteByPrice(int buchetePret)
         {
-            for(int i = 0; i < FloriList.Count; i++)
+            for(int i = 0; i < _FloriList.Count; i++)
             {
-                if (FloriList[i].pret == buchetePret)
+                if (_FloriList[i].pret == buchetePret)
                 {
                     Console.WriteLine(i);
                     return 1;
@@ -104,11 +110,11 @@ namespace MVC_flori
 
         public bool BuyFlowerSSh(string BuchetDorit)
         {
-            for(int i = 0;i < FloriList.Count; i++)
+            for(int i = 0;i < _FloriList.Count; i++)
             {
-                if (FloriList[i].flori == BuchetDorit) 
+                if (_FloriList[i].flori == BuchetDorit) 
                 {
-                    FloriList.RemoveAt(i);
+                    _FloriList.RemoveAt(i);
                     return true;
                 }
             }
@@ -119,7 +125,7 @@ namespace MVC_flori
         {
             if(FindFloriByType(FLoriNoi.flori) != -1)
             {
-                this.FloriList.Add(FLoriNoi);
+                this._FloriList.Add(FLoriNoi);
                 return true;
             }
             return false;
@@ -129,7 +135,7 @@ namespace MVC_flori
 
         public bool EditBuchetFire(string floriAlese, int fire)
         {
-            foreach (Flori x in FloriList)
+            foreach (Flori x in _FloriList)
             {
                 if (x.flori.Equals(floriAlese))
                 {
@@ -142,7 +148,7 @@ namespace MVC_flori
 
         public bool EditBuchetTipFlori(string floriAlese, string tipFLoriNou)
         {
-            foreach (Flori x in FloriList)
+            foreach (Flori x in _FloriList)
             {
                 if (x.flori.Equals(floriAlese))
                 {
@@ -155,7 +161,7 @@ namespace MVC_flori
 
         public bool EditBuchetNewPrice(string floriAlese, int newPrice)
         {
-            foreach (Flori x in FloriList)
+            foreach (Flori x in _FloriList)
             {
                 if (x.flori.Equals(floriAlese))
                 {

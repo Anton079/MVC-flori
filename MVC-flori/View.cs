@@ -8,7 +8,12 @@ namespace MVC_flori
 {
     public class View
     {
-        FloriService floriService = new FloriService();
+        private FloriService _floriService;
+
+        public View()
+        {
+            _floriService = new FloriService();
+        }
 
         public void Meniu()
         {
@@ -27,7 +32,7 @@ namespace MVC_flori
         {
             bool running = true;
 
-            floriService.LoadData();
+            _floriService.LoadData();
             while(running)
             {
                 Meniu();
@@ -36,7 +41,7 @@ namespace MVC_flori
                 switch (alegere)
                 {
                     case "1":
-                        floriService.AfisareFlori();
+                        _floriService.AfisareFlori();
                         break;
                     case "2":
                         ShowFlowersAtSamePrice();
@@ -70,7 +75,7 @@ namespace MVC_flori
             Console.WriteLine("La ce pret doriti un buchet?");
             int buchetePrice = Int32.Parse(Console.ReadLine());
 
-            if(floriService.FindBucheteByPrice(buchetePrice) != -1)
+            if(_floriService.FindBucheteByPrice(buchetePrice) != -1)
             {
                 Console.WriteLine("Avem la acest pret!");
 
@@ -86,10 +91,10 @@ namespace MVC_flori
         public void BuyFlowers()
         {
             Console.WriteLine("Ce flori doriti sa cumparati din lista de mai jos?");
-            floriService.AfisareFlori();
+            _floriService.AfisareFlori();
             string floriDorite = Console.ReadLine();
 
-            if(floriService.BuyFlowerSSh(floriDorite) != false)
+            if(_floriService.BuyFlowerSSh(floriDorite) != false)
             {
                 Console.WriteLine("Florile au fost achizitionate cu succes!");
             }
@@ -121,7 +126,7 @@ namespace MVC_flori
             Console.WriteLine("Cu cate fire doriti sa modificati buchetul");
             int buchetNewFire = Int32.Parse(Console.ReadLine());
 
-            if (floriService.EditBuchetFire(wantedFlori, buchetNewFire))
+            if (_floriService.EditBuchetFire(wantedFlori, buchetNewFire))
             {
                 Console.WriteLine("Buchetul a fost editat cu succes");
             }
@@ -139,7 +144,7 @@ namespace MVC_flori
             Console.WriteLine("Cu ce tip de flori doriti sa modificati buchetul");
             string buchetNeuTipFlori = Console.ReadLine();
 
-            if (floriService.EditBuchetTipFlori(wantedFlori, buchetNeuTipFlori))
+            if (_floriService.EditBuchetTipFlori(wantedFlori, buchetNeuTipFlori))
             {
                 Console.WriteLine("Buchetul a fost editat cu succes");
             }
@@ -157,7 +162,7 @@ namespace MVC_flori
             Console.WriteLine("Cu ce pret doriti sa modificati buchetul");
             int buchetNewPrice = Int32.Parse(Console.ReadLine());
 
-            if (floriService.EditBuchetNewPrice(wantedFlori, buchetNewPrice))
+            if (_floriService.EditBuchetNewPrice(wantedFlori, buchetNewPrice))
             {
                 Console.WriteLine("Buchetul a fost editat cu succes");
             }
